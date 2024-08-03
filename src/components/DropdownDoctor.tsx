@@ -14,7 +14,7 @@ const DropDownDoctor = () => {
     localStorage.removeItem('doctor_id');
     localStorage.removeItem('doctor_status');
     localStorage.removeItem('doctor_first_name');
-    localStorage.removeItem('flag');
+    localStorage.removeItem('doctor_isSubmitted');
     navigate('/login');
   };
 

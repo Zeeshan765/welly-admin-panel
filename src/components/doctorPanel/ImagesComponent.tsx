@@ -102,6 +102,7 @@ const ImagesComponent = ({
               //  src={userSix}
               src={profileImageUrl ? profileImageUrl : userSix}
               alt="profile"
+              className='h-40 w-40 rounded-full'
             />
             <label
               htmlFor="profile"

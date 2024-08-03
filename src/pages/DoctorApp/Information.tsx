@@ -4,16 +4,27 @@ import UnderlineTabs from '../../components/UnderlineTabs';
 import ImagesComponent from '../../components/doctorPanel/ImagesComponent';
 import toast from 'react-hot-toast';
 import apiService from '../../services/ApiService';
+import ShowProfile from '../../components/doctorPanel/ShowProfile';
 
 const Information = () => {
   const id = localStorage.getItem('doctor_id');
-  const flagValue = localStorage?.getItem('flag');
-  console.log('flagValue', flagValue);
-  let flag = false;
-  // @ts-ignore
-  if (flagValue == 1) {
-    flag = true;
-  }
+
+  // const isSubmitted = JSON.stringify(
+  //   localStorage.getItem('doctor_isSubmitted'),
+  // );
+
+  // console.log('isSubmitted', isSubmitted)
+
+  // let flag = false;
+
+  // if (isSubmitted === "true") {
+  //   flag = true;
+  // } else {
+  //   flag = false;
+  // }
+
+  const isSubmitted = localStorage.getItem('doctor_isSubmitted') === 'true';
+  console.log('isSubmitted', isSubmitted);
 
   const [consultations, setConsultations] = useState([]);
   const [profile, setProfile] = useState({});
@@ -42,25 +53,26 @@ const Information = () => {
         cover_image: coverImageUrl,
         profile_image: profileImageUrl,
         schedule: consultations,
+        isSubmitted: true,
       };
       const res = await apiService.post('users/updateUser', newData);
       console.log('res', res);
       if (res.status === 201) {
         toast.success('Doctor Info Updated Successfully');
-        localStorage.setItem('flag', '1');
+        localStorage.setItem('doctor_isSubmitted','true')
         setLoadSpin(false);
-        
+        window.location.reload();
       }
     } catch (error) {
       console.log('error', error);
       toast.error('Unable to Update Doctor');
-      setLoadSpin(true);
+      setLoadSpin(false);
     }
   };
 
   return (
     <>
-      {flag ? (
+      {isSubmitted ? (
         <>
           <div className="flex w-full border-l-6 mt-10 border-warning bg-warning bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
             <div className="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30">
@@ -87,6 +99,9 @@ const Information = () => {
                 Thank you for your patience.
               </p>
             </div>
+          </div>
+          <div className="mt-10">
+            <ShowProfile />
           </div>
         </>
       ) : (

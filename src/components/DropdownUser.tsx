@@ -12,6 +12,7 @@ const DropdownUser = () => {
     localStorage.removeItem(`admin_id`);
     localStorage.removeItem(`admin_status`);
     localStorage.removeItem('admin_first_name');
+    localStorage.removeItem('admin_isSubmitted')
     navigate('/login');
   };
 

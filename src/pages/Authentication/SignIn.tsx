@@ -13,9 +13,9 @@ const SignIn = () => {
       setLoading(true);
       const response = await apiService.post('users/login', values);
       console.log('response', response);
-      let { access_token, role, status, userId, first_name, last_name } =
+      let { access_token, role, status, userId, first_name,isSubmitted} =
         response?.data;
-      console.log('status', status);
+      console.log('status',response?.data);
 
       if (role !== 'admin' && role !== 'doctor') {
         toast.error('Invalid Credentials');
@@ -34,6 +34,7 @@ const SignIn = () => {
         localStorage.setItem(`${rolePrefix}_id`, userId);
         localStorage.setItem(`${rolePrefix}_status`, status);
         localStorage.setItem(`${rolePrefix}_first_name`, first_name);
+        localStorage.setItem(`${rolePrefix}_isSubmitted`, isSubmitted);
         // axios.defaults.headers.common['Authorization'] = token;
         toast.success('Login Successfully');
 
