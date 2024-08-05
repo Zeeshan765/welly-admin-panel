@@ -1,4 +1,4 @@
-import { UserIcon } from '@heroicons/react/24/outline';
+import { UserIcon,ClipboardDocumentIcon} from '@heroicons/react/24/outline';
 
 const AdminSidebar = [
   {
@@ -22,6 +22,12 @@ const DoctorSidebar = [
     name: 'profile',
     title: 'Profile',
     icon: UserIcon,
+  },
+  {
+    link: '/appointments',
+    name: 'appointments',
+    title: 'Appointments',
+    icon: ClipboardDocumentIcon,
   },
 ];
 

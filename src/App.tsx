@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound';
 import apiService from './services/ApiService';
 import Information from './pages/DoctorApp/Information';
 import DoctorProfile from './components/DoctorProfile';
+import AppointmentsListing from './pages/DoctorApp/AppointmentsListing';
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 const DoctorLayout = lazy(() => import('./layout/DoctorLayout'));
@@ -119,6 +120,7 @@ function App() {
         {isDoctor && status == 'active' && (
           <Route element={<PanelLayout />}>
             <Route path="/profile" element={<DoctorProfile />} />
+            <Route path="/appointments" element={<AppointmentsListing />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         )}
